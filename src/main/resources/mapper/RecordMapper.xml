@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tongtongbigboy.mapper.RecordMapper">
+
+    <insert id="addRecord" parameterType="Record">
+        insert into record(id,user_id,year,month,day,startTimeHour,
+                            startTimeMinute,
+                            endTimeHour,
+                            endTimeMinute,
+                            title,
+                            location,
+                            detail)
+                            values (
+                                null, #{user_id},#{year},#{month},#{day},#{startTimeHour},#{startTimeMinute},#{endTimeHour},#{endTimeMinute},
+                                #{title},#{location},#{detail}
+                            )
+    </insert>
+
+    <select id="findByDate" resultType="Record">
+        select * from record where year = #{year} and
+        month = #{month} and
+        day = #{day} and
+        user_id = #{uid}
+    </select>
+
+    <delete id="delete" parameterType="Record">
+        delete from record where year = #{year} and
+        month = #{month} and
+        day = #{day} and
+        startTimeHour = #{startTimeHour} and
+        startTimeMinute = #{startTimeMinute} and
+        endTimeHour = #{endTimeHour} and
+        endTimeMinute = #{endTimeMinute} and
+        user_id = #{user_id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,38 @@
+# 项目信息配置
+project:
+  name: calendar
+  version: 1.0
+  env: development
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/calendar?useUnicode=true&characterEncoding=utf8
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.tongtongbigboy.model
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+# 日志配置
+logback:
+  level: INFO
+  appender: ${project.env}
+# dao层的日志设置为debug，方便查看sql
+logging:
+  level:
+    com.tongtongbigboy.mapper: debug
+
+
+jwt:
+  config:
+    key: tongtongbigboy
+    ttl: 3600000
