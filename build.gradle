@@ -28,6 +28,34 @@ apply plugin: 'java'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.springframework.boot'
 
+apply plugin: 'docker'
+apply plugin: 'application'
+
+
+docker {
+    maintainer = 'tongtongbigboy <1917966749@qq.com>'
+    baseImage = 'java'
+}
+
+sourceSets{
+    mainClassName = 'com.tongtongbigboy.Application'
+}
+
+
+task dockerBuild(type: Docker, dependsOn: build) {
+    workingDir '/data/workspace/' + project.name
+    applicationName = project.name
+    tag = "121.5.156.59:5000/${applicationName}"
+    addFile {
+        from configurations.archives.artifacts.files
+        into '/data/workspace/' + project.name
+    }
+    exposePort(8080)
+
+    defaultCommand(['java', '-jar', '-Dspring.profiles.active=docker', "${project.name}-${project.version}.jar"])
+}
+
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 repositories {

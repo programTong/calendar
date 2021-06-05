@@ -45,9 +45,12 @@ public class MonthService {
         }
 
         MonthView monthView = new MonthView();
-        monthView.setDayCount(42);
+        monthView.setDayCount(DateUtil.endOfMonth(date).dayOfMonth());
         monthView.setDayViews(dayViews);
         monthView.setTodayIndex(todayIndex);
+        monthView.setYear(beginOfMonth.year());
+        monthView.setMonth(beginOfMonth.month()+1);
+        monthView.setBeginOfMonthIndex(indexOfFirstDayOfMonth);
         return monthView;
     }
 }

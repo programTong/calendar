@@ -9,6 +9,15 @@ public class MonthView {
     private List<DayView> dayViews;
     private String chineseMonth;
     private int todayIndex;
+    private int beginOfMonthIndex;
+
+    public int getBeginOfMonthIndex() {
+        return beginOfMonthIndex;
+    }
+
+    public void setBeginOfMonthIndex(int beginOfMonthIndex) {
+        this.beginOfMonthIndex = beginOfMonthIndex;
+    }
 
     public int getTodayIndex() {
         return todayIndex;

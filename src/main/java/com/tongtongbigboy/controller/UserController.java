@@ -62,6 +62,7 @@ public class UserController  {
             map.put("token",token);
             map.put("role","user");
             map.put("uid",user0.getId());
+            map.put("username",user0.getUsername());
             return new Result(true, StatusCode.OK,"登录成功",map);
         }
     }
